@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Identify the Vihecle</h1>
+
+    <div id="btns">
+      <button id="camera">Camera</button>
+      <button id="button" onclick="window.location.href='{{ url_for( 'local_file' ) }}';">Local File</button>
+    </div>
+{% endblock content %}

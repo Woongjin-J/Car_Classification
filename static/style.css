@@ -1,0 +1,47 @@
+body {
+  margin: auto;
+  width: auto;
+  text-align: center;
+  align-content: center;
+  font-family: Comic Sans MS, Textile, Cursive;
+}
+
+h1 {
+  padding: 5% 0 2% 0;
+}
+
+#btns {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+
+#btns button {
+  height: 20%;
+  background-color: rgb(0, 153, 255);
+  border-color:rgb(40, 168, 253);
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+}
+
+.image {
+  margin: auto;
+  height: 300px;
+  width: 400px;
+  display: block;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+}
+
+#car {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
