@@ -10,3 +10,7 @@ function readURL(input) {
       reader.readAsDataURL(input.files[0]);
   }
 }
+
+function identify(input) {
+  alert(input[0]['tagName']);
+}
