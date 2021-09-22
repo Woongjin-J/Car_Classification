@@ -3,21 +3,17 @@
     <h1>Identify the Car</h1>
 
     <div class="image">
-      <!-- {% if filename %} -->
-        <!-- <img src="{{ url_for('show_img', filename=filename) }}"> -->
-      <!-- {% endif %} -->
-      <img id="car" src="#" alt="your image" />
+      <img id="car" src="#" alt="upload an image" />
     </div>
 
-    <!-- <form method=POST action="/" enctype="multipart/form-data">
-      <input type="file" name ="file" accept="image/*">
-      <input type="submit" value="Upload">
-    </form> -->
-
-    <!-- ex1 -->
-    <form action = "http://127.0.0.1:5000/uploaded" method = "POST" enctype = "multipart/form-data">
-      <input type='file' name = 'file' onchange="readURL(this);" />
-      <!-- <input type = "submit"/> -->
+    <form action="http://127.0.0.1:5000/uploade_image" method="POST" enctype="multipart/form-data" class="form_btns">
+      <label class="img-upload">
+        <input type='file' onchange="readURL(this);" />
+        Upload Image
+      </label>
+      <label class="img-upload">
+        <input type = "submit" value='Identify'/>
+        Identify
+      </label>
     </form>
-    <!-- ex1 end -->
 {% endblock content %}
