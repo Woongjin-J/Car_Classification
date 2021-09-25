@@ -6,7 +6,6 @@ function readURL(input) {
           $('#car')
               .attr('src', e.target.result);
       };
-
       reader.readAsDataURL(input.files[0]);
   }
 }

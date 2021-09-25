@@ -3,29 +3,27 @@
     <h1>Identify the Car</h1>
 
     <div class="image">
-      <img id="car" src="#" alt="upload an image" />
+      {% if img_path %}
+        <img id="car" src={{ img_path }} alt="uploaded image" />
+      {% else %}
+        <img id="car" src="#" alt="upload an image" />
+      {% endif %}
     </div>
 
-    <form action="http://127.0.0.1:5000/uploade_image" method="POST" enctype="multipart/form-data" class="form_btns">
+    <form method="POST" action="" enctype="multipart/form-data" class="form_btns">
       <label class="img-upload">
-        <input type='file' onchange='readURL(this);' />
+        <input type='file' name='file' onchange='readURL(this);' />
         Upload Image
       </label>
       <label class="img-upload">
-        <input type = "submit" value='Identify' onchange='identify(this);' />
+        <input type = "submit" value='Identify' />
         Identify
       </label>
     </form>
 
     {% if prediction %}
-    <script type='text/javascript'>
-      let car = '{{ prediction }}';
-      alert('ler');
-      function print_data() {
-        var tag = car[0]['tagName'];
-        document.getElementById('tag').innerText = "Vehicle Class: " + tag;
-      }
-    </script>
+      <p> Vehicle Class: {{ prediction[0]['tagName'] }} </p>
+      <p> Probability: {{ "%.2f%%"|format(prediction[0]['probability'] * 100) }} </p>
     {% endif %}
 
     <p id='tag'></p>
