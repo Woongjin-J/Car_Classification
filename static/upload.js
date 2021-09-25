@@ -1,3 +1,4 @@
+// Takes in the input and send back the image path back to local_file.html
 function readURL(input) {
   if (input.files && input.files[0]) {
       var reader = new FileReader();
