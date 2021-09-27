@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Identify the Car</h1>
+
+    <!-- if statement for showing the image both right after selecting and uploading -->
+    <div class="image">
+      {% if img_path %}
+        <!-- image after identify button clicked -->
+        <img id="car" src={{ img_path }} alt="uploaded image" />
+      {% else %}
+        <!-- image after upload button clicked -->
+        <img id="car" src="#" alt="upload an image" />
+      {% endif %}
+    </div>
+
+    <form method="POST" action="" enctype="multipart/form-data" class="form_btns"></form>
+      <label class="img-upload">
+        <input type="file" accept="image/*" capture="environment" onchange="display(this);" />
+        Open Camera
+      </label>
+      <label class="img-upload">
+        <input type = "submit" value='Identify' />
+        Identify
+      </label>
+    </form>
+
+    <!-- Prints out the results into p tags -->
+    {% if prediction %}
+      <p id='tag'> Vehicle Class: {{ prediction['tagName'] }} </p>
+      <p id='probability'> Probability: {{ "%.2f%%"|format(prediction['probability'] * 100) }} </p>
+    {% endif %}
+{% endblock content %}

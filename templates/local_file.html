@@ -5,19 +5,19 @@
     <!-- if statement for showing the image both right after selecting and uploading -->
     <div class="image">
       {% if img_path %}
-        <!-- image after uploaded -->
+        <!-- image after identify button clicked -->
         <img id="car" src={{ img_path }} alt="uploaded image" />
       {% else %}
-        <!-- image when selected -->
+        <!-- image after upload button clicked -->
         <img id="car" src="#" alt="upload an image" />
       {% endif %}
     </div>
 
     <!-- Buttons for selecting the image file and uploading for prediction -->
-    <!-- readURL(this) direct to upload.js to present image right after selecting the image -->
+    <!-- display(this) direct to display_image.js to present image right after selecting the image -->
     <form method="POST" action="" enctype="multipart/form-data" class="form_btns">
       <label class="img-upload">
-        <input type='file' name='file' onchange='readURL(this);' />
+        <input type='file' name='file' onchange='display(this);' />
         Upload Image
       </label>
       <label class="img-upload">

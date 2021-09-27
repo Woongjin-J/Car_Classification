@@ -26,7 +26,7 @@ def local_file():
   return render_template('local_file.html')
 
 # Make prediction of the image uploaded
-@app.route('/local_file', methods = ['POST'])
+@app.route('/local_file', methods=['POST'])
 def upload_image():
    if request.method == 'POST':
       # Receives POST request and save the uploaded image to the FLask's uploads folder
@@ -45,6 +45,26 @@ def upload_image():
 @app.route('/uploads/<filename>')
 def upload(filename):
   return send_from_directory(app.config['UPLOAD_PATH'], filename)
+
+# Camera page
+@app.route('/camera')
+def camera():
+  return render_template('/camera.html')
+
+@app.route('/camera', methods=['POST'])
+def upload_camera():
+   if request.method == 'POST':
+      # Receives POST request and save the uploaded image to the FLask's uploads folder
+      img_file = request.files['file']
+      filename = secure_filename(img_file.filename)
+      img_path = os.path.join(app.config['UPLOAD_PATH'], filename)
+      img_file.save(img_path)
+      print("it's working")
+      # Sends the image in a format of byte array to the API for predictions saved in json
+      response = requests.post(prediction_url, data=open(img_path, "rb"), headers=headers)
+      response.raise_for_status()
+      prediction = response.json()["predictions"][0]
+      return render_template('camera.html', prediction=prediction, img_path=img_path)
 
 if __name__ == '__main__':
   app.run(debug=True)
