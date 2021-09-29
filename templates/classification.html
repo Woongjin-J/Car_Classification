@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="page-header bg-info bg-opacity-50 h-100">
+      <h1 class="m-auto">Car Classification</h1>
+    </div>
+
+    <!-- if statement for showing the image both right after selecting and uploading -->
+    <div class="image w-90 mt-5 mb-5">
+      {% if img_path %}
+        <!-- image after identify button clicked -->
+        <img class="img-round mx-auto d-block" id="car" src="{{ img_path }}" alt="uploaded image" />
+      {% else %}
+        <!-- image after upload button clicked -->
+        <img class="img-round mx-auto d-block" id="car" src="#" alt="" />
+      {% endif %}
+    </div>
+
+    <!-- Prints out the results into p tags -->
+    <dl class="container">
+      {% if prediction %}
+        <dt class="text-start">Class:</dt>
+        <dd class="bg-info text-end bg-opacity-25">{{ prediction['tagName'] }}</dd>
+        <dt class="text-start">Probability: </dt>
+        <dd class="bg-info text-end bg-opacity-25">{{ "%.2f%%"|format(prediction['probability'] * 100) }} </dd>
+      {% endif %}
+    </dl>
+
+    <!-- Buttons for selecting the image file and uploading for prediction -->
+    <!-- display(this) direct to display_image.js to present image right after selecting the image -->
+    <form method="POST" action="" enctype="multipart/form-data" class="container fixed-bottom d-flex justify-content-between">
+      <label class="btn btn-outline-primary col-5 d-flex justify-content-between align-items-center">
+        <input type='file' name='file' onchange='display(this);' />
+        <img src="{{url_for('static', filename='image/camera_plus.png')}}" alt="image upload icon" />
+        <span>Upload</span>
+      </label>
+      <label class="btn btn-outline-primary col-5 d-flex justify-content-between align-items-center">
+        <input type = "submit" value='Identify' />
+        <img src="{{url_for('static', filename='image/cloud_search.png')}}" alt="image identification icon" />
+        <span>Identify</span>
+      </label>
+    </form>
+
+{% endblock content %}

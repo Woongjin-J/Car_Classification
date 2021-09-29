@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/41a49df2-374c-43e9-bc84-e6f665212640/resourceGroups/cv-k/providers/Microsoft.Web/sites/car-classification",
+  "appService.deploySubpath": "."
+}
