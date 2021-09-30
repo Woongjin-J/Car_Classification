@@ -1,10 +1,24 @@
-{% extends "layout.html" %}
-{% block content %}
-    <div class="page-header bg-info bg-opacity-50 h-100">
-      <h1 class="m-auto">Car Classification</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- style.css for additional styling; Mainly used Bootstrap for UI design-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <title>Vihecle Classification</title>
+  </head>
+
+  <body class="text-center">
+    <div id="h1-style" class="page-header bg-info bg-opacity-50">
+      <h1 class="m-auto pt-2">Car Classification</h1>
     </div>
 
-    <!-- if statement for showing the image both right after selecting and uploading -->
+    <!-- if statement for showing the image both right after uploading and identifying the file -->
     <div class="image w-90 mt-5 mb-5">
       {% if img_path %}
         <!-- image after identify button clicked -->
@@ -15,7 +29,7 @@
       {% endif %}
     </div>
 
-    <!-- Prints out the results into p tags -->
+    <!-- Prints out the prediction result -->
     <dl class="container">
       {% if prediction %}
         <dt class="text-start">Class:</dt>
@@ -25,19 +39,26 @@
       {% endif %}
     </dl>
 
-    <!-- Buttons for selecting the image file and uploading for prediction -->
-    <!-- display(this) direct to display_image.js to present image right after selecting the image -->
-    <form method="POST" action="" enctype="multipart/form-data" class="container fixed-bottom d-flex justify-content-between">
+    <!--
+    Buttons for selecting the image file and uploading for prediction
+    'display(this)' directs to display_image.js to present the image right after selecting it
+    either from local folder or camera
+    -->
+    <form method="POST" action="" enctype="multipart/form-data" class="container fixed-bottom d-flex justify-content-between pb-3">
       <label class="btn btn-outline-primary col-5 d-flex justify-content-between align-items-center">
         <input type='file' name='file' onchange='display(this);' />
-        <img src="{{url_for('static', filename='image/camera_plus.png')}}" alt="image upload icon" />
+        <img src="{{url_for('static', filename='image/camera_plus.png')}}" alt="image upload icon" /> <!-- icon image-->
         <span>Upload</span>
       </label>
       <label class="btn btn-outline-primary col-5 d-flex justify-content-between align-items-center">
         <input type = "submit" value='Identify' />
-        <img src="{{url_for('static', filename='image/cloud_search.png')}}" alt="image identification icon" />
+        <img src="{{url_for('static', filename='image/cloud_search.png')}}" alt="image identification icon" /> <!-- icon image-->
         <span>Identify</span>
       </label>
     </form>
 
-{% endblock content %}
+    <!-- jquery script tag; and ldisplay_image.js for displaying image after it's selected -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='display_image.js') }}"></script>
+  </body>
+</html>
