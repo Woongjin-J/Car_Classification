@@ -17,7 +17,7 @@ from werkzeug.utils import secure_filename
 
 # API url address and the headers for prediction call
 prediction_url = "https://carclassification-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/7e22c873-b892-4b3a-8c64-020a9c551c16/classify/iterations/Car_Classification/image"
-headers = {'content-type':'application/octet-stream', 'Prediction-Key':'d37e9f6455e2423a8a4907ee280941c6'}
+headers = {'content-type':'application/octet-stream', 'Prediction-Key':''}
 
 app = Flask(__name__)
 
